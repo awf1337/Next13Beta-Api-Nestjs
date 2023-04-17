@@ -10,7 +10,6 @@ import {
 import { UsersService } from './users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../authentication/get-user.decorator';
-
 @Controller('users')
 @UseGuards(AuthGuard())
 export class UsersController {
@@ -22,7 +21,7 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@GetUser() user) {
+  findAll(@GetUser() user: any) {
     return this.usersService.findAll();
   }
 

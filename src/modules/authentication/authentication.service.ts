@@ -27,7 +27,7 @@ export class AuthenticationService {
     return this.tokenGenerator({ email: payload.email });
   }
 
-  async signIn(payload: SignInDto): Promise<{ accessToken: string }> {
+  async signIn(payload: SignInDto): Promise<string> {
     const { email, password } = payload;
 
     const user = await this.usersRepository.findOne({ where: { email } });
@@ -48,6 +48,6 @@ export class AuthenticationService {
     const payloadJwt: JwtPayload = payload;
     const accessToken = this.jwtService.sign(payloadJwt);
 
-    return { accessToken };
+    return accessToken;
   }
 }
